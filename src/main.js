@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 
 import routes from './router/index.js';
+import Store from './store/index.js';
 
 Vue.use(Vuex);
 Vue.use(VueRouter);
@@ -15,11 +16,7 @@ const router = new VueRouter({
 
 // console.log(routes);
 
-const store = new Vuex.Store({
-  mutations : {},
-  state: {},
-  actions: {},
-});
+const store = new Vuex.Store(Store);
 
 /* eslint-disable no-new */
 new Vue({
