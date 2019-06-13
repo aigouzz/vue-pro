@@ -3,12 +3,13 @@
 //   context: '/Users/guoxunchao/lesson1/vue-pro',
 //   devtool: 'cheap-module-eval-source-map',
 //   node:
-//   { setImmediate: false,
+//     { setImmediate: false,
 //     dgram: 'empty',
 //     fs: 'empty',
 //     net: 'empty',
 //     tls: 'empty',
-//     child_process: 'empty' },
+//     child_process: 'empty'
+//     },
 //   output:
 //   { path: '/Users/guoxunchao/lesson1/vue-pro/dist',
 //     filename: '[name].js',
@@ -77,7 +78,7 @@
 //       { apply: [Function: apply] } ],
 //   entry: { app: [ './src/main.js' ] } }
 
-const splitChunksPlugin = require('splitChunksPlugin');
+// const splitChunksPlugin = require('splitChunksPlugin');
 
 module.exports = {
   devServer: {
@@ -94,6 +95,35 @@ module.exports = {
       app: ['./src/main.js'],
       // another: ['./src/lib/util.js'],
     };
-    config.plugins.push(splitChunksPlugin);
+    if (process.env.NODE_ENV == 'production') {
+      let optimization = {
+        runtimeChunk: 'single',
+        splitChunks: {
+          chunks: 'all',
+          maxInitialRequests: Infinity,
+          minSize: 20000, // 依赖包超过20000bit将被单独打包
+          cacheGroups: {
+            vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name (module) {
+                // get the name. E.g. node_modules/packageName/not/this/part.js
+                // or node_modules/packageName
+                const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
+                // npm package names are URL-safe, but some servers don't like @ symbols
+                return `npm.${packageName.replace('@', '')}`;
+              }
+            }
+          }
+        }
+      };
+      Object.assign(config, {
+        optimization,
+      });
+      config.mode = 'production';
+    } else {
+      config.mode = 'development';
+    }
+
+    // config.plugins.push(splitChunksPlugin);
   },
 };
