@@ -79,7 +79,7 @@
 //   entry: { app: [ './src/main.js' ] } }
 
 // const splitChunksPlugin = require('splitChunksPlugin');
-
+const bundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 module.exports = {
   devServer: {
     proxy: {
@@ -123,6 +123,7 @@ module.exports = {
     } else {
       config.mode = 'development';
     }
+    config.plugins.push(new bundleAnalyzerPlugin());
 
     // config.plugins.push(splitChunksPlugin);
   },
