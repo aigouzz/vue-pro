@@ -54,6 +54,6 @@
   ],
   "gitHooks": {
     "pre-commit": "",
-    "post-commit": "node publish"
+    "post-commit": "node publish --no-verify"
   }
 }
