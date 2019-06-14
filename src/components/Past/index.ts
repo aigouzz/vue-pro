@@ -1,12 +1,33 @@
 
-export  default {
+
+export default {
   data() {
     return {
-      name: 'guoxc',
+      name: 'this is test past',
     };
   },
   created() {
-    this.name = 'guoxunchao';
+    const self = this;
+    // window.console.log(self.name);
     window.console.log('past');
   },
 };
+
+
+
+
+
+
+
+
+// export  default {
+//   data() {
+//     return {
+//       name: 'guoxc',
+//     };
+//   },
+//   created() {
+//     this.name = 'guoxunchao';
+//     window.console.log('past');
+//   },
+// };

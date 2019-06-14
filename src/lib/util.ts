@@ -1,12 +1,17 @@
-import a from './a';
-import b from './b';
+import Axios from 'axios';
 
-const get = (type) => {
-  return type == 'name' ? a.name : b.age;
-}
+const get = (url: string, data: object) => {
+  return Axios.get(url, data);
+};
+
+const post = (url: string, data: object) => {
+  return Axios.post(url, data);
+};
+
 
 
 
 export default {
   get,
+  post,
 }

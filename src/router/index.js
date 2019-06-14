@@ -1,6 +1,7 @@
 import Past from '../components/Past/index.vue';
 import Load from '../components/Loader/index.vue';
 import Next from '../components/Next/index.vue';
+import Index from '../components/Index/index.vue';
 export default [
     {
         path: '/past',
@@ -20,7 +21,7 @@ export default [
     {
         path: '*',
         name: 'all',
-        component: Past,
+        component: Index,
     },
 ];
 //# sourceMappingURL=index.js.map

@@ -1,0 +1,7 @@
+.wrap
+    .index
+        .commom(v-for="(item,index) in list")
+            a(:href="item.url")
+            .title {{item.title}}
+            .sub {{item.rate}}
+            img(:src="item.cover")

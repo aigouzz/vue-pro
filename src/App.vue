@@ -1,13 +1,29 @@
 <template>
   <div id="app">
+    <img src="@/assets/logo.png" alt="">
+    <hello></hello>
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/past">past</router-link> |
+      <router-link to="/load">load</router-link> |
+      <router-link to="/next">next</router-link>
     </div>
     <router-view/>
   </div>
 </template>
+<script>
+  import hello from './components/HelloWorld';
+  export default {
+    data() {
+      return {
 
+      };
+    },
+    components: {
+      hello,
+    },
+  };
+</script>
 <style lang="scss">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

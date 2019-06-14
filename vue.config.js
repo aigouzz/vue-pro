@@ -80,6 +80,7 @@
 
 // const splitChunksPlugin = require('splitChunksPlugin');
 const bundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const path = require('path');
 module.exports = {
   devServer: {
     proxy: {
@@ -123,8 +124,13 @@ module.exports = {
     } else {
       config.mode = 'development';
     }
-    config.plugins.push(new bundleAnalyzerPlugin());
+    // config.plugins.push(new bundleAnalyzerPlugin());
 
-    // config.plugins.push(splitChunksPlugin);
+  },
+  chainWebpack(config) {
+    config.resolve.alias
+      .set('components', path.resolve(__dirname, 'src/components'))
+      .set('lib', path.resolve(__dirname, 'src/lib'))
+      .set('@', path.resolve(__dirname, 'src'));
   },
 };

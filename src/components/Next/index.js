@@ -5,7 +5,7 @@ export default {
         };
     },
     created() {
-        this.name = 'guoxunchao';
+        // this.name = 'guoxunchao';
         window.console.log('next');
     },
 };

@@ -1,9 +1,12 @@
-import a from './a';
-import b from './b';
-const get = (type) => {
-    return type == 'name' ? a.name : b.age;
+import Axios from 'axios';
+const get = (url, data) => {
+    return Axios.get(url, data);
+};
+const post = (url, data) => {
+    return Axios.post(url, data);
 };
 export default {
     get,
+    post,
 };
 //# sourceMappingURL=util.js.map

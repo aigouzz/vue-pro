@@ -1,16 +1,13 @@
-import util from '../../lib/util';
 
-export  default {
+export default {
   data() {
     return {
-      logo: '',
+      name: '',
     };
   },
   created() {
-    // this.logo = require('/src/assets/logo.png');
-    const logo = require('../../assets/logo.png');
-    this.name = util.get('name');
-    window.console.log('loader');
-    window.console.log(logo);
+    const self = this;
+    // self.name = 'guoxc';
+    window.console.log('loader');// eslint-disable-next-line
   },
-};
+}
