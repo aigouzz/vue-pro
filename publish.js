@@ -1,1 +1,1 @@
-window.console.log('this is publish');
+console.log('this is publish');
