@@ -51,5 +51,9 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "gitHooks": {
+    "pre-commit": "",
+    "post-commit": "node publish"
+  }
 }

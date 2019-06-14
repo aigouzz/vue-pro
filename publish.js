@@ -1,0 +1,1 @@
+window.console.log('this is publish');
