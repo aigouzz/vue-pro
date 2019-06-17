@@ -31,13 +31,6 @@ Vue.mixin({
             next();
         }
     },
-    beforeRouteLeave(to, from, next) {
-        // window.console.log(to);
-        // window.console.log(from);
-        // window.console.log(next);
-        // window.console.log(this);
-        next();
-    },
 });
 router.beforeEach((to, from, next) => {
     window.console.log(to);
