@@ -1,9 +1,8 @@
-import Util from '@/lib/util';
+import { mapState } from "vuex";
 export default {
     data() {
         return {
             name: 'this is test past',
-            past: [],
         };
     },
     created() {
@@ -11,15 +10,19 @@ export default {
         // window.console.log(self.name);
         window.console.log('past');
     },
-    getData() {
+    getData({ store, route }) {
         const self = this;
-        Util.get('/api/vuepro/past', {}).then((res) => {
-            window.console.log('past data'); // ok
-            window.console.log(res.data.data); // ok
-            self.past = res.data.data;
-        }, (err) => {
-            window.alert('接口出错了。。');
-        });
+        return store.dispatch('past/getPast');
+    },
+    computed: {
+        ...mapState('past', [
+            'past'
+        ]),
+    },
+    watch: {
+        past() {
+            window.console.log(this.past);
+        }
     },
 };
 //# sourceMappingURL=index.js.map

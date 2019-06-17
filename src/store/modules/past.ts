@@ -1,7 +1,11 @@
+import Util from '@/lib/util';
+
 const past = {
+  namespaced: true,
   state: {
     name: '',
     app: 'v1.1',
+    past: [],
   },
   mutations: {
     setName(state, value) {
@@ -24,6 +28,14 @@ const past = {
     },
     setApp({commit}) {
       commit('setApp', 'v2.0');
+    },
+    async getPast({commit, state}) {
+      Util.get('/api/vuepro/past', {}).then((res:any): any => {
+        state.past = res.data.data;
+        window.console.log(state.past)
+      }, (err: object): any => {
+        window.alert('接口出错了。。');
+      });
     },
   }
 };

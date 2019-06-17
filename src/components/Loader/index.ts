@@ -12,7 +12,7 @@ export default {
   },
   getData() {
     const  self = this;
-    Util.get('/api/vuepro/tag', {}).then((res:any): any => {
+    return Util.get('/api/vuepro/tag', {}).then((res:any): any => {
       window.console.log(res.data.data); // ok
       self.tags = res.data.data;
     }, (err: object): any => {
