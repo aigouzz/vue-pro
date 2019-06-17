@@ -11,7 +11,7 @@ export  default {
     // this.name = 'guoxunchao';
     const self = this;
     window.console.log('next');
-    Util.get('/api/vuepro/tag', {}).then((res:object): any => {
+    Util.get('/api/vuepro/tag', {}).then((res:any): any => {
       window.console.log(res.data.data); // ok
       self.tags = res.data.data;
     }, (err: object): any => {

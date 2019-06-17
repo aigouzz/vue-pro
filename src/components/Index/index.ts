@@ -20,7 +20,7 @@ export default {
         page_limit: 50,
         page_start: self.page,
       };
-      Util.get('/api/vuepro/index', {}).then((res:object): any => {
+      Util.get('/api/vuepro/index', {}).then((res:any): any => {
         window.console.log(res.data.data); // ok
         self.list = res.data.data;
       }, (err: object): any => {

@@ -14,20 +14,3 @@ export default {
 };
 
 
-
-
-
-
-
-
-// export  default {
-//   data() {
-//     return {
-//       name: 'guoxc',
-//     };
-//   },
-//   created() {
-//     this.name = 'guoxunchao';
-//     window.console.log('past');
-//   },
-// };
