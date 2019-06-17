@@ -30,10 +30,10 @@
     "node_modules",
     "src/store/*.ts",
     "src/store/**/*.ts",
-    "src/components/*.ts"
+    "src/components/*.ts",
+    "src/lib/*.ts"
   ],
   "include": [
-    "src/lib/*.ts",
     "src/router/*.ts",
     "src/views/*.ts",
     "src/*.tsx",

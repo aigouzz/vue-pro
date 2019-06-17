@@ -1,5 +1,9 @@
-.wrap
+.next
     .index =============
     .index next get all step
     .sec this is next
     .index =============
+    .tags
+        .common(v-for="(item, index) in tags")
+            .title {{item.name}}
+            .tag {{item.tag}}

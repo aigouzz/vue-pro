@@ -83,11 +83,20 @@ const bundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const path = require('path');
 module.exports = {
   devServer: {
+    // withCredentials: true,
+    open: true,
     proxy: {
       '/api' : {
-        target: '//www.mi.com',
-        ws: true,
-        changeOrigin: true
+        target: 'http://mock.be.mi.com/mock/113',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        },
+        onProxyReq: function(proxyReq, req, res) {
+          // window.console.log(req);
+          // window.console.log(res);
+          proxyReq.setHeader('referer', '//mock.be.mi.com');
+        },
       },
     },
   },
