@@ -9,24 +9,25 @@ export default {
   },
   created() {
     const self = this;
-    self.getData();
+    window.console.log('index');
   },
   methods: {
-    getData() {
-      const self = this;
-      const data = {
-        type: 'movie',
-        tag: '热门',
-        page_limit: 50,
-        page_start: self.page,
-      };
-      Util.get('/api/vuepro/index', {}).then((res:any): any => {
-        window.console.log(res.data.data); // ok
-        self.list = res.data.data;
-      }, (err: object): any => {
-        window.alert('接口出错了。。')
-      });
-    },
+
+  },
+  getData() {
+    const self = this;
+    const data = {
+      type: 'movie',
+      tag: '热门',
+      page_limit: 50,
+      page_start: self.page,
+    };
+    Util.get('/api/vuepro/index', {}).then((res:any): any => {
+      window.console.log(res.data.data); // ok
+      self.list = res.data.data;
+    }, (err: object): any => {
+      window.alert('接口出错了。。')
+    });
   },
 };
 

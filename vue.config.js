@@ -81,6 +81,8 @@
 // const splitChunksPlugin = require('splitChunksPlugin');
 const bundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path');
+const prerenderSPAPlugin = require('prerender-spa-plugin');
+const Renderer = prerenderSPAPlugin.PuppeteerRenderer;
 module.exports = {
   devServer: {
     // withCredentials: true,
@@ -134,6 +136,19 @@ module.exports = {
       config.mode = 'development';
     }
     // config.plugins.push(new bundleAnalyzerPlugin());
+    // config.plugins.push(
+    //   new prerenderSPAPlugin({
+    //     // Required - The path to the webpack-outputted app to prerender.
+    //     staticDir: path.join(__dirname, 'dist'),
+    //     // Required - Routes to render.
+    //     routes: ['/past', '/next', '/load'],
+    //     renderer: new Renderer({
+    //       headless: false,
+    //       // 在 main.js 中 document.dispatchEvent(new Event('render-event'))，两者的事件名称要对应上。
+    //       renderAfterDocumentEvent: 'render-event'
+    //     }),
+    //   })
+    // );
 
   },
   chainWebpack(config) {
