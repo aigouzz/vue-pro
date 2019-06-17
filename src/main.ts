@@ -35,28 +35,26 @@ Vue.mixin({
   },
 });
 
-router.onReady(() => {
-  router.beforeResolve((to, from, next) => {
-    window.console.log(to);
-    const matched = router.getMatchedComponents(to);
-    const prevMatched = router.getMatchedComponents(from);
+router.beforeResolve((to, from, next) => {
+  window.console.log(to);
+  const matched = router.getMatchedComponents(to);
+  const prevMatched = router.getMatchedComponents(from);
 
-    let diffed  = false;
-    const activated = matched.filter((c, i) => {
-      return diffed || (diffed = (prevMatched[i] != c));
-    });
-    if (!activated.length) {
-      return next();
-    }
-
-    Promise.all(activated.map(c => {
-      if (c.getData || (!c.asyncDataFetched && !to.meta.notKeepAlive)) {
-        return c.getData({ store, route: to });
-      }
-    })).then(() => {
-      next();
-    }).catch(next);
+  let diffed  = false;
+  const activated = matched.filter((c, i) => {
+    return diffed || (diffed = (prevMatched[i] != c));
   });
+  if (!activated.length) {
+    return next();
+  }
+
+  Promise.all(activated.map(c => {
+    if (c.getData || (!c.asyncDataFetched && !to.meta.notKeepAlive)) {
+      return c.getData({ store, route: to });
+    }
+  })).then(() => {
+    next();
+  }).catch(next);
 });
 
 /* eslint-disable no-new */

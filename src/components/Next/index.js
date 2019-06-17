@@ -13,8 +13,7 @@ export default {
     getData() {
         const self = this;
         Util.get('/api/vuepro/tag', {}).then((res) => {
-            window.console.log('next tag'); // ok
-            window.console.log(res.data.data); // ok
+            window.console.log(self); // ok
             self.tags = res.data.data;
         }, (err) => {
             window.alert('接口出错了。。');

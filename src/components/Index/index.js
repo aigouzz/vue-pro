@@ -20,8 +20,8 @@ export default {
             page_start: self.page,
         };
         return Util.get('/api/vuepro/index', {}).then((res) => {
-            // window.console.log(res.data.data); // ok
-            self.list = res.data.data;
+            self.data.list = res.data.data;
+            window.console.log(self);
         }, (err) => {
             window.alert('接口出错了。。');
         });
