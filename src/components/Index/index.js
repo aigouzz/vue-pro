@@ -11,7 +11,7 @@ export default {
         window.console.log('index');
     },
     methods: {},
-    getData() {
+    getData({ store, route }) {
         const self = this;
         const data = {
             type: 'movie',
@@ -19,8 +19,8 @@ export default {
             page_limit: 50,
             page_start: self.page,
         };
-        Util.get('/api/vuepro/index', {}).then((res) => {
-            window.console.log(res.data.data); // ok
+        return Util.get('/api/vuepro/index', {}).then((res) => {
+            // window.console.log(res.data.data); // ok
             self.list = res.data.data;
         }, (err) => {
             window.alert('接口出错了。。');

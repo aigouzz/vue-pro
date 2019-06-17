@@ -17,12 +17,9 @@ const router = new VueRouter({
 const store = new Vuex.Store(Store);
 Vue.mixin({
     beforeRouteUpdate(to, from, next) {
-        window.console.log('===========');
-        window.console.log(to);
-        window.console.log('===========');
         const getData = this.$options.getData;
         if (getData) {
-            getData.call(this, {
+            self.data = getData.call(this, {
                 store: this.$store,
                 route: to
             }).then(() => next, () => next);
@@ -32,12 +29,26 @@ Vue.mixin({
         }
     },
 });
-router.beforeEach((to, from, next) => {
-    window.console.log(to);
-    window.console.log(from);
-    window.console.log(next);
-    window.console.log(this);
-    next();
+router.onReady(() => {
+    router.beforeResolve((to, from, next) => {
+        window.console.log(to);
+        const matched = router.getMatchedComponents(to);
+        const prevMatched = router.getMatchedComponents(from);
+        let diffed = false;
+        const activated = matched.filter((c, i) => {
+            return diffed || (diffed = (prevMatched[i] != c));
+        });
+        if (!activated.length) {
+            return next();
+        }
+        Promise.all(activated.map(c => {
+            if (c.getData || (!c.asyncDataFetched && !to.meta.notKeepAlive)) {
+                return c.getData({ store, route: to });
+            }
+        })).then(() => {
+            next();
+        }).catch(next);
+    });
 });
 /* eslint-disable no-new */
 new Vue({

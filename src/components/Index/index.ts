@@ -14,7 +14,7 @@ export default {
   methods: {
 
   },
-  getData() {
+  getData({store, route}) {
     const self = this;
     const data = {
       type: 'movie',
@@ -22,11 +22,11 @@ export default {
       page_limit: 50,
       page_start: self.page,
     };
-    Util.get('/api/vuepro/index', {}).then((res:any): any => {
-      window.console.log(res.data.data); // ok
+    return Util.get('/api/vuepro/index', {}).then((res:any): any => {
+      // window.console.log(res.data.data); // ok
       self.list = res.data.data;
     }, (err: object): any => {
-      window.alert('接口出错了。。')
+      window.alert('接口出错了。。');
     });
   },
 };
