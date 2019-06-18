@@ -9,8 +9,6 @@ export default {
   },
   created() {
     window.console.log(Vue.prototype);
-    const self = this;
-    window.console.log(self);
   },
   mounted() {
     const self = this;
