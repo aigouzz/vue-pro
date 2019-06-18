@@ -113,7 +113,7 @@ module.exports = {
         splitChunks: {
           chunks: 'all',
           maxInitialRequests: Infinity,
-          minSize: 30000, // 依赖包超过20000bit将被单独打包
+          minSize: 30000, // 依赖包超过30000bit(30kb)将被单独打包
           cacheGroups: {
             vendor: {
               test: /[\\/]node_modules[\\/]/,
