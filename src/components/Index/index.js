@@ -8,14 +8,12 @@ export default {
     mounted() {
         const self = this;
         self.$toast.show({
-            text: 'haha'
+            text: '出错了，请重试',
+            type: 'error'
         });
         setTimeout(() => {
             self.$toast.hide();
-        }, 3000);
-        setTimeout(() => {
-            self.$toast.show();
-        }, 6000);
+        }, 2000);
     },
     getData({ store, route }) {
         return store.dispatch('index/getAPP');

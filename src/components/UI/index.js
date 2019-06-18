@@ -7,7 +7,7 @@ plugin.install = (Vue, options = {}) => {
     document.body.appendChild(toast.$el);
     Vue.prototype.$toast = {
         show(options = {}) {
-            toast.show(options.text);
+            toast.show(options.text, options.type);
         },
         hide(options = {}) {
             toast.hide();
