@@ -3,7 +3,7 @@ let num = '456789';
 let arr = [];
 let result = [];
 
-num.split('').forEach((item, index) => {
+num.split('').forEach((item: string | number, index: number) => {
     let num = item - 2;
     arr.push(obj[num].split(''));
 });
@@ -18,7 +18,6 @@ function merge(arr1, arr2) {
     return arr;
 }
 
-
 for(let i = 0;i < arr.length;i ++) {
     if (i === 0) {
         result = arr[0];
@@ -28,3 +27,4 @@ for(let i = 0;i < arr.length;i ++) {
 }
 
 console.log(result);
+
