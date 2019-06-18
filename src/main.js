@@ -5,10 +5,12 @@ import Vuex from 'vuex';
 import vueResource from 'vue-resource';
 import routes from './router/index.js';
 import Store from './store/index.js';
+import Install from '@/components/UI/index';
 Vue.use(Vuex);
 Vue.use(VueRouter);
 Vue.use(vueResource);
 Vue.config.productionTip = false;
+Install.install(Vue);
 const router = new VueRouter({
     mode: 'history',
     routes,
@@ -20,8 +22,9 @@ Vue.mixin({
         const getData = this.$options.getData;
         if (getData) {
             self.data = getData.call(this, {
-                store: this.$store,
-                route: to
+                store,
+                route: to,
+                router,
             }).then(() => next, () => next);
         }
         else {
@@ -30,7 +33,6 @@ Vue.mixin({
     },
 });
 router.beforeResolve((to, from, next) => {
-    window.console.log(to);
     const matched = router.getMatchedComponents(to);
     const prevMatched = router.getMatchedComponents(from);
     let diffed = false;
@@ -41,8 +43,10 @@ router.beforeResolve((to, from, next) => {
         return next();
     }
     Promise.all(activated.map(c => {
-        if (c.getData || (!c.asyncDataFetched && !to.meta.notKeepAlive)) {
-            return c.getData({ store, route: to });
+        if (c.getData && (!c.asyncDataFetched || to.meta.notKeepAlive)) {
+            return c.getData({ store, route: to, router }).then(() => {
+                c.asyncDataFetched = true;
+            });
         }
     })).then(() => {
         next();

@@ -1,23 +1,18 @@
-import Util from '@/lib/util';
+import { mapState } from "vuex";
 export default {
     data() {
         return {
             name: '',
-            tags: [],
         };
     },
-    created() {
+    getData({ store, route, router }) {
         const self = this;
-        window.console.log('loader');
+        return store.dispatch('index/getAPP');
     },
-    getData() {
-        const self = this;
-        return Util.get('/api/vuepro/tag', {}).then((res) => {
-            window.console.log(res.data.data); // ok
-            self.tags = res.data.data;
-        }, (err) => {
-            window.alert('接口出错了。。');
-        });
+    computed: {
+        ...mapState('index', [
+            'app',
+        ]),
     },
 };
 //# sourceMappingURL=index.js.map

@@ -5,3 +5,7 @@
     .three you got
     .index this is load
     .index ==============
+    .imgs
+        .common(v-for="(item,index) in app")
+            .title {{item.title}}
+            img(:src="item.img")

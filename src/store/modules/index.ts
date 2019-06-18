@@ -1,7 +1,10 @@
+import Util from '@/lib/util';
+
+
 const index = {
+  namespaced: true,
   state: {
     app: '',
-
   },
   mutations: {
     setAPP(state, value) {
@@ -9,13 +12,14 @@ const index = {
     },
   },
   actions: {
-    setAPP({commit, state}) {
+    async getAPP({commit, state}) {
       return new Promise((resolve, reject) => {
-        commit('setAPP');
-        resolve();
-        if (!state.app) {
-          reject();
-        }
+        Util.get('/api/vuepro/index', {}).then((res:any): any => {
+          commit('setAPP', res.data.data);
+          resolve();
+        }, (err: object): any => {
+          reject(err);
+        });
       });
     },
   }

@@ -1,33 +1,29 @@
-import Util from '@/lib/util';
+import {mapState} from "vuex";
 
 export default {
   data() {
     return {
       page: 0,
-      list: [],
     };
   },
-  created() {
+  mounted() {
     const self = this;
-    window.console.log('index');
-  },
-  methods: {
-
+    self.$toast.show({
+      text: 'haha'
+    });
+    setTimeout(() =>{
+      self.$toast.hide();
+    }, 3000);
+    setTimeout(() => {
+      self.$toast.show();
+    }, 6000);
   },
   getData({store, route}) {
-    const self = this;
-    const data = {
-      type: 'movie',
-      tag: '热门',
-      page_limit: 50,
-      page_start: self.page,
-    };
-    return Util.get('/api/vuepro/index', {}).then((res:any): any => {
-      self.data.list = res.data.data;
-      window.console.log(self);
-    }, (err: object): any => {
-      window.alert('接口出错了。。');
-    });
+    return store.dispatch('index/getAPP');
+  },
+  computed: {
+    ...mapState('index', [
+        'app'
+    ]),
   },
 };
-

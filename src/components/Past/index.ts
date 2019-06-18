@@ -7,11 +7,6 @@ export default {
       name: 'this is test past',
     };
   },
-  created() {
-    const self = this;
-    // window.console.log(self.name);
-    window.console.log('past');
-  },
   getData({store, route}) {
     const self = this;
     return store.dispatch('past/getPast');
