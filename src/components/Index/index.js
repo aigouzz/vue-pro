@@ -1,9 +1,13 @@
+import Vue from 'vue';
 import { mapState } from "vuex";
 export default {
     data() {
         return {
             page: 0,
         };
+    },
+    created() {
+        window.console.log(Vue.prototype);
     },
     mounted() {
         const self = this;

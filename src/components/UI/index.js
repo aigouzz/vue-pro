@@ -8,9 +8,11 @@ plugin.install = (Vue, options = {}) => {
     Vue.prototype.$toast = {
         show(options = {}) {
             toast.show(options.text, options.type);
+            return this;
         },
         hide(options = {}) {
             toast.hide();
+            return this;
         },
     };
 };
