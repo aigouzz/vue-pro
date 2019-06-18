@@ -22,5 +22,8 @@ for (let i = 0; i < arr.length; i++) {
     }
     result = merge(result, arr[i]);
 }
-console.log(result);
+window.console.log(result);
+/*
+* 算法题
+* */
 //# sourceMappingURL=calcu.js.map
