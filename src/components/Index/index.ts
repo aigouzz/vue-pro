@@ -8,7 +8,7 @@ export default {
     };
   },
   created() {
-    window.console.log(Vue.prototype);
+    // window.console.log(Vue.prototype);
   },
   mounted() {
     const self = this;

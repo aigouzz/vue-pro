@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import { mapState } from "vuex";
 export default {
     data() {
@@ -7,7 +6,7 @@ export default {
         };
     },
     created() {
-        window.console.log(Vue.prototype);
+        // window.console.log(Vue.prototype);
     },
     mounted() {
         const self = this;
