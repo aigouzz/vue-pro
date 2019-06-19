@@ -11,6 +11,9 @@ export default {
             this.text = text || this.text;
             this.type = type;
             this.showing = true;
+            setTimeout(() => {
+                this.hide();
+            }, 1500);
         },
         hide() {
             this.showing = false;

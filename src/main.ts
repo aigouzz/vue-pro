@@ -3,7 +3,7 @@ import App from './App.vue'
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import vueResource from 'vue-resource';
-
+import Util from '@/lib/util';
 import routes from './router/index.js';
 import Store from './store/index.js';
 import Install from '@/components/UI/index';
@@ -12,7 +12,7 @@ Vue.use(Vuex);
 Vue.use(VueRouter);
 Vue.use(vueResource);
 Vue.config.productionTip = false;
-Install.install(Vue);
+Vue.use(Install.install);
 
 const router = new VueRouter({
   mode: 'history',
@@ -27,7 +27,7 @@ Vue.mixin({
   beforeRouteUpdate(to, from, next) {
     const getData = this.$options.getData;
     if (getData) {
-      self.data = getData.call(this, {
+      getData.call(this, {
         store,
         route: to,
         router,
@@ -59,6 +59,19 @@ router.beforeResolve((to, from, next) => {
   })).then(() => {
     next();
   }).catch(next);
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requireAuth) {
+    if (!Util.isLogin()) {
+      next(false);
+      Util.login();
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
 });
 
 /* eslint-disable no-new */

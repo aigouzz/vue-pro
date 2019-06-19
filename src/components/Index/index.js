@@ -11,16 +11,18 @@ export default {
     },
     mounted() {
         const self = this;
-        self.$toast.show({
-            text: '出错了，请重试',
-            type: 'error'
-        });
         setTimeout(() => {
             self.$toast.hide();
         }, 2000);
     },
     getData({ store, route }) {
-        return store.dispatch('index/getAPP');
+        const self = this;
+        return store.dispatch('index/getAPP').catch((err) => {
+            self.$toast.show({
+                text: '请求首页数据出错，请重试~',
+                type: 'error',
+            });
+        });
     },
     computed: {
         ...mapState('index', [
