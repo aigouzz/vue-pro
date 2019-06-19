@@ -17,13 +17,6 @@ const isLogin = () => {
   return sessionStorage.getItem('token');
 };
 
-const login = () => {
-  window.console.log(Vue.prototype.$router);
-  Vue1.prototype.$router.push({
-    name: 'login',
-  });
-};
-
 const doLogin = (name:string, password: string) => {
   return new Promise((resolve, reject) => {
     post('/api/vuepro/login',{
@@ -42,6 +35,5 @@ export default {
   post,
   jsonp,
   isLogin,
-  login,
   doLogin,
 }

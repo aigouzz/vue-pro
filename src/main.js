@@ -16,7 +16,6 @@ const router = new VueRouter({
     mode: 'history',
     routes,
 });
-// console.log(routes);
 const store = new Vuex.Store(Store);
 Vue.mixin({
     beforeRouteUpdate(to, from, next) {
@@ -57,7 +56,9 @@ router.beforeEach((to, from, next) => {
     if (to.meta.requireAuth) {
         if (!Util.isLogin()) {
             next(false);
-            Util.login();
+            router.push({
+                name: 'login',
+            });
         }
         else {
             next();

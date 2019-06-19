@@ -16,12 +16,21 @@ export default {
           type: 'error'
         });
         return false;
-      }
-      return Util.doLogin(self.name, self.password).then(() => {
+      } else if (sessionStorage.getItem('token')) {
         self.$toast.show({
-          text: '登录成功',
-          type: 'success'
+          text: '您已经登陆过，不用重复登录',
+          type: 'error'
         });
+        return false;
+      }
+      return Util.doLogin(self.name, self.password).then((res:any) => {
+        if (res.data.code == 0) {
+          self.$toast.show({
+            text: '登录成功',
+            type: 'success'
+          });
+          sessionStorage.setItem('token', res.data.token);
+        }
       }, (err) => {
         self.$toast.show({
           text: '登录失败，请重试',
