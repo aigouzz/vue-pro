@@ -66,6 +66,9 @@ router.beforeEach((to, from, next) => {
       next(false);
       router.push({
         name: 'login',
+        query: {
+          to: to.name,
+        },
       });
     } else {
       next();

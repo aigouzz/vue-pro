@@ -30,6 +30,7 @@ export default {
             type: 'success'
           });
           sessionStorage.setItem('token', res.data.token);
+          self.$router.push(self.$route.query.to);
         }
       }, (err) => {
         self.$toast.show({
