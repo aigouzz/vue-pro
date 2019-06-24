@@ -34,12 +34,19 @@ export default [
         component: Login,
     },
     {
-        path: '*',
-        name: 'all',
+        path: '/index',
+        name: 'index',
         component: Index,
         meta: {
             requireAuth: true
         }
+    },
+    {
+        path: '*',
+        name: 'all',
+        redirect: {
+            name: 'index'
+        },
     },
 ];
 //# sourceMappingURL=index.js.map
