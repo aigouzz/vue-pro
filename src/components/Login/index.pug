@@ -5,7 +5,7 @@
         input(type="text", placeholder="请输入用户名",v-model="name")
     .index
         .label 密码
-        input(type="password", placeholder="请输入密码",v-model="password")
+        input(type="password", placeholder="请输入密码",v-model="password", @keyup.enter="login")
     .index
         .btn(@click="login") 登录
     .index =============
